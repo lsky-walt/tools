@@ -1,4 +1,8 @@
 
+/**
+ * 一个工具类
+ * @type {Object}
+ */
 let tools = {
     getType (data){
         let _type = Object.prototype.toString.call(data),
@@ -38,46 +42,55 @@ let tools = {
     	return arr;
     },
     ajax (options){
-    	options = options || {};
-	    options['type'] = (options['type'] || 'GET').toUpperCase();
-	    options['dataType'] = options['dataType'] || 'json';
-	    let arr = [],
-	    	params = ``;
-	    for (const [key, val] of Object.entries(options['data'])){
-	    	arr.push(`${encodeURIComponent(key)}=${encodeURIComponent(val)}`);
-	    }
+    	/**
+    	 * ajax promise 重封装
+    	 * @author lsky
+    	 * @param  {[Promise]} (resolve, reject)       [promise 自带方法	]
+    	 * @param  {[Object]} options    [ajax参数]
+    	 * @return {[Promise]}           [返回标准promise]
+    	 */
+    	return new Promise((resolve, reject) => {
+    		options = options || {};
+		    options['type'] = (options['type'] || 'GET').toUpperCase();
+		    options['dataType'] = options['dataType'] || 'json';
+		    let arr = [],
+		    	params = ``;
+		    for (const [key, val] of Object.entries(options['data'])){
+		    	arr.push(`${encodeURIComponent(key)}=${encodeURIComponent(val)}`);
+		    }
 
-	    params = arr.join("&");
+		    params = arr.join("&");
 
 
-	    // 创建
-	    let xhr = null;
-	    if(window.XMLHttpRequest){
-	        xhr = new XMLHttpRequest();
-	    }else{
-	        alert("不支持IE6以下版本的浏览器");
-	    }
+		    // 创建
+		    let xhr = null;
+		    if(window.XMLHttpRequest){
+		        xhr = new XMLHttpRequest();
+		    }else{
+		        alert("不支持IE6以下版本的浏览器");
+		    }
 
-	    xhr.onreadystatechange = () => {
-	        if(xhr.readyState == 4){
-	            let _status = xhr.status;
-	            if(_status >= 200 && _status < 300){
-	                options['success'] && options['success'](xhr.responseText, xhr.responseXML);
-	            }else{
-	                options['fail'] && options['fail'](_status);
-	            }
-	        }
-	    };
+		    xhr.onreadystatechange = () => {
+		        if(xhr.readyState == 4){
+		            let _status = xhr.status;
+		            if(_status >= 200 && _status < 300){
+		            	resolve(xhr);
+		            }else{
+		            	reject(_status);
+		            }
+		        }
+		    };
 
-	    if(options['type'] == 'GET'){
-	        xhr.open('GET', `${options['url']}?${params}`, true);
-	        xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
-	        xhr.send(null);
-	    }else if(options['type'] == 'POST'){
-	        xhr.open('POST', options['url'], true);
-	        xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
-	        xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
-	        xhr.send(params);
-	    }
+		    if(options['type'] == 'GET'){
+		        xhr.open('GET', `${options['url']}?${params}`, true);
+		        xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
+		        xhr.send(null);
+		    }else if(options['type'] == 'POST'){
+		        xhr.open('POST', options['url'], true);
+		        xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
+		        xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+		        xhr.send(params);
+		    }
+    	})
     }
 }
