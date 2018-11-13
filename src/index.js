@@ -117,5 +117,24 @@ let tools = {
 				}, wait);
 			}
 		}
+	},
+	throttle (func, wait){
+		/**
+		 * @desc 函数节流
+		 * @param func 函数
+		 * @param wait 延迟执行毫秒数
+		 */
+		let throttleTimeout;
+		return function () {
+			let throttleContext = this,
+				throttleArgs = arguments;
+
+			if(!throttleTimeout){
+				throttleTimeout = setTimeout(() => {
+					throttleTimeout = null;
+					func.apply(throttleContext, throttleArgs);
+				}, wait)
+			}
+		}
 	}
 }
