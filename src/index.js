@@ -92,5 +92,30 @@ let tools = {
 		        xhr.send(params);
 		    }
     	})
-    }
+	},
+	debounce (func, wait, immediate){
+		/**
+		 * @desc 函数防抖
+		 * @params func 函数
+		 * @params wait 延迟执行毫秒数
+		 * @params immediate true 表示立即执行版， false 非立即执行
+		 */
+		let timeout;
+		return function (){
+			let contenxt = this,
+				args = arguments;
+
+			if(immediate){
+				let callNow = !timeout;
+				timeout = setTimeout(() => {
+					timeout = null;
+				}, wait);
+				if(callNow) func.apply(contenxt, args);
+			}else{
+				timeout = setTimeout(() => {
+					func.apply(contenxt, args);
+				}, wait);
+			}
+		}
+	}
 }
