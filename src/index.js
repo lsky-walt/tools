@@ -136,5 +136,16 @@ let tools = {
 				}, wait)
 			}
 		}
-	}
+	},
+	getRem (){
+        if (document.documentElement) {
+            var _temp = window.getComputedStyle(document.documentElement)["fontSize"];
+            _temp = _temp.substring(0, _temp.indexOf("px"));
+            return Number(_temp);
+        } else {
+            var _temp = window.getComputedStyle(document.body)["fontSize"];
+            _temp = _temp.substring.substring(0, _temp.indexOf("px"));
+            return Number(_temp);
+        }
+    }
 }
