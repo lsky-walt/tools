@@ -181,5 +181,21 @@ let tools = {
         }
 
         return _ret;
+	},
+	loadImageAsync (url){
+		return new Promise(function (resolve, reject) {
+			const image = new Image();
+
+			image.onload = function () {
+				image.onload = null;
+				resolve(true);
+			}
+			image.onerror = function (){
+				image.onerror = null;
+				reject(`加载失败，失败图片地址${url}`);
+			}
+
+			image.src = url;
+		})
 	}
 }
