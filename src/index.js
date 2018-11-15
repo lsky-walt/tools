@@ -147,5 +147,39 @@ let tools = {
             _temp = _temp.substring.substring(0, _temp.indexOf("px"));
             return Number(_temp);
         }
-    }
+    },
+    checkNum (str, flag){ 
+        if(flag == 'blur'){
+            if(str.indexOf('.') === (str.length - 1)){
+                return str.substr(0, str.length - 1);
+            }else{
+                return str;
+            }
+        }
+        // flag为空 或者 为input change 
+        // 初始化一个空字符串
+        var _ret = '';
+        //  如果第一个为 “.” 则清除
+        if( str !=''&& str.substr(0,1) == '.' ){  
+            return _ret; 
+        }
+        //解决 粘贴不生效 
+        _ret = str.replace(/^0*(0\.|[1-9])/, '$1'); 
+        //清除“数字”和“.”以外的字符
+        _ret = _ret.replace(/[^\d.]/g,"");
+        //只保留第一个. 清除多余的    
+        _ret = _ret.replace(/\.{2,}/g,".");        
+        _ret = _ret.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        //只能输入两个小数       
+        _ret = _ret.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');   
+        
+        //以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的数字
+        if(_ret.indexOf(".")< 0 && _ret !=""){  
+            if(_ret.substr(0,1) == '0' && _ret.length == 2){  
+                _ret= _ret.substr(1,_ret.length);      
+            }  
+        }
+
+        return _ret;
+	}
 }
