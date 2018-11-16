@@ -222,5 +222,35 @@ let tools = {
             isOriginalChrome,
             isSafari,
         };
+	},
+	/**
+	 * 生成浏览器跳转APP scheme 链接
+	 * @author lsky
+	 * @param  {[Object]} config [path(APP 路径), param(APP 所需参数), protocal(APP scheme 标识)]
+	 * @return {[String]}        [scheme 链接]
+	 */
+	buildScheme: (config) => {
+        const { path, param, protocol } = config;
+        const query = typeof param !== 'undefined'
+          ? Object.keys(param).map(key => `${key}=${param[key]}`).join('&')
+          : '';
+      
+        return `${protocol}://${path}?${query}`;
+	},
+	/**
+     * 生成H5跳转APP 链接
+     * @param {Object} config 配置  见buildScheme说明
+     * @param {Object} options [intent[scheme, package], fallback]
+     */
+    generateIntent(config, options) {
+
+        const { intent, fallback } = options;
+        const intentParam = Object.keys(intent).map(key => `${key}=${intent[key]};`).join('');
+        const intentTail = `#Intent;${intentParam}S.browser_fallback_url=${encodeURIComponent(fallback)};end;`;
+        let urlPath = buildScheme(config, options);
+      
+        urlPath = urlPath.slice(urlPath.indexOf('//') + 2);
+      
+        return `intent://${urlPath}/${intentTail}`;
     }
 }
