@@ -11,11 +11,34 @@ let tools = {
         return _type.substring((startIndex + 1), endIndex).toLowerCase();
     },
     deepClone (obj){
-    	if(tools.getType(obj) != 'object' || tools.getType(obj) != 'array'){
+		let _tarType = tools.getType(obj);
+    	if(_tarType != 'object' || _tarType != 'array' || _tarType != 'function'){
     		return obj;
     	}
 
-    	return JSON.parse(JSON.stringify(obj));
+		let res = null;
+		if(_tarType == 'object'){
+			res = {}
+		}else if(_tarType == 'array'){
+			res = []
+		}
+
+		for (const key in obj) {
+			if (!obj.hasOwnProperty(key)) {
+				continue;
+			}
+			const element = obj[key];
+			switch(_tarType){
+				case 'function':
+					break;
+				case 'object':
+				case 'array':
+					res[key] = tools.deepClone(element);
+			}
+		}
+		return res;
+		// return JSON.parse(JSON.stringify(obj));
+		
     },
     isEmpty (val) {
     	switch(tools.getType(val)){
