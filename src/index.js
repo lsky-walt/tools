@@ -30,7 +30,7 @@ let tools = {
     			}
     			break;
     		default:
-    			return val === '' || val === null || isNaN(val) || val === false;
+    			return val === '' || val === null || val === false;
     	}
     },
     toUnique (data){
