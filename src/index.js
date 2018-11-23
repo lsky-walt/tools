@@ -30,6 +30,7 @@ let tools = {
 			const element = obj[key];
 			switch(_tarType){
 				case 'function':
+					res[key] = new Function (`return ${element.toString()}`)();
 					break;
 				case 'object':
 				case 'array':
