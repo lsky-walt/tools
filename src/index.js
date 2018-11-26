@@ -276,5 +276,35 @@ let tools = {
         urlPath = urlPath.slice(urlPath.indexOf('//') + 2);
       
         return `intent://${urlPath}/${intentTail}`;
-    }
+	},
+	dateFormat (format, date = null){
+		/**
+		 * @param {Date} date 日期
+		 * @param {String} format 格式
+		 * @return {String} format
+		 */
+		if(tools.isEmpty(date) || tools.getType(format) != 'string'){
+			throw new Error("format is undefiend or type is Error");
+			return '';
+		}
+
+		let _date = tools.isEmpty(date) ? new Date() : ((date instanceof Date || tools.getType(date) == 'string' || tools.getType(date) == 'number') ? new Date(date) : new Date());
+
+		let formatReg = {
+			'y+': _date.getFullYear(),
+			'M+': _date.getMonth() + 1,
+			'd+': date.getDate(),
+			'h+': date.getHours(),
+			'm+': date.getMinutes(),
+			's+': date.getSeconds()
+		}
+
+		for(var reg in formatReg){
+			if(new RegExp(reg).test(format)){
+				  var match = RegExp.lastMatch;
+				  format = format.replace(match, formatReg[reg]< 10 ? '0'+formatReg[reg]: formatReg[reg].toString() );
+			}
+		  }
+		return format
+	}
 }
