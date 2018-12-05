@@ -306,5 +306,18 @@ let tools = {
 			}
 		  }
 		return format
+	},
+	getParentsNode (ev, tar = ''){
+		if(!tar){
+			return false;
+		}
+		let par = ev.target;
+	
+		do {
+			par = par.parentNode;
+		}
+		while((!par.classList.contains(tar) && par.id != tar))
+	
+		return par;
 	}
 }
