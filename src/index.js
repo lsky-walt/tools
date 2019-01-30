@@ -277,15 +277,19 @@ let tools = {
       
         return `intent://${urlPath}/${intentTail}`;
 	},
-	dateFormat (format, date = null){
+	dateFormat (date = null, format = null){
 		/**
 		 * @param {Date} date 日期
 		 * @param {String} format 格式
 		 * @return {String} format
 		 */
-		if(tools.isEmpty(date) || tools.getType(format) != 'string'){
+		if(tools.isEmpty(date)){
 			throw new Error("format is undefiend or type is Error");
 			return '';
+		}
+
+		if(tools.isEmpty(format) || tools.getType(format) != 'string'){
+			format = 'yyyy-MM-dd hh:mm:ss';
 		}
 
 		let _date = tools.isEmpty(date) ? new Date() : ((date instanceof Date || tools.getType(date) == 'string' || tools.getType(date) == 'number') ? new Date(date) : new Date());
