@@ -1,0 +1,15 @@
+
+
+#node_modules
+node_modules
+
+# lock
+yarn.lock
+package-lock.json
+
+# log
+*.log
+
+
+# dist
+dist

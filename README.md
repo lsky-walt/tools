@@ -2,7 +2,7 @@
 一个工具库
 
 - `getType` 返回参数的类型
-- `deepClone` 深拷贝  **待优化**
+- `deepClone` 深拷贝  *待优化*
 - `isEmpty` 判断是否为空
 - `toUnique` 去重
 - `ajax` 原生 `ajax` 请求，`promise`封装
