@@ -1,2 +1,4 @@
 
-export * from './type'
+export * from './type-es6'
+export * from './value'
+export * from './request'
