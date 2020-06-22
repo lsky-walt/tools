@@ -6,7 +6,7 @@
   "author": "lsky_walt <lsky_walt@163.com>",
   "license": "MIT",
   "scripts": {
-    "compiler": "babel src --out-dir dist --downlevelIteration --extensions '.ts'"
+    "compiler": "babel src --out-dir dist --extensions '.ts'"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
