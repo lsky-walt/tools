@@ -1,12 +1,13 @@
 {
   "name": "@lsky/tools",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/index.js",
   "repository": "git@github.com:lsky-walt/tools.git",
   "author": "lsky_walt <lsky_walt@163.com>",
   "license": "MIT",
   "scripts": {
-    "babel": "babel src --out-dir ./lib"
+    "babel": "babel src --out-dir ./lib",
+    "publish": "npm run babel && npm publish --access public"
   },
   "files": [
     "lib"
