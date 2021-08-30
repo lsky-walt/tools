@@ -4,7 +4,7 @@ function getType(data) {
   if (!string) {
     return null
   }
-  return string.replace("[object", "").replace("]", "")
+  return string.replace("[object ", "").replace("]", "")
 }
 
 function isType(type) {
