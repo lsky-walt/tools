@@ -47,11 +47,9 @@ function toUnique(data) {
   if (isArray(data)) {
     return [...new Set(data)]
   }
-  if (isMap(data)) {
-    return toUnique(Object.values(data))
-  }
+
   if (isSet(data)) {
-    return data
+    return [...data]
   }
   return []
 }
