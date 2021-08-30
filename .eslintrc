@@ -1,8 +1,11 @@
 {
   "extends": [
-    "plugin:import/typescript"
+    "prettier"
   ],
-  "parser": "@typescript-eslint/parser",
+  "parser": "babel-eslint",
+  "plugins": [
+    "prettier"
+  ],
   "env": {
     "browser": true,
     "es6": true,
@@ -17,9 +20,6 @@
       "objectLiteralDuplicateProperties": false
     }
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
   "rules": {
     "array-bracket-spacing": [
       "error",
@@ -30,10 +30,6 @@
       {
         "properties": "never"
       }
-    ],
-    "comma-dangle": [
-      "error",
-      "never"
     ],
     "curly": [
       "error",
@@ -76,14 +72,6 @@
       {
         "args": "none",
         "vars": "all"
-      }
-    ],
-    "quotes": [
-      "error",
-      "single",
-      {
-        "allowTemplateLiterals": true,
-        "avoidEscape": true
       }
     ],
     "semi": [
