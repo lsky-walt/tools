@@ -34,7 +34,7 @@ function isEmpty(data) {
     return false
   }
 
-  if (isObject(data) && keys(data).length !== 0) {
+  if (isObject(data) && keys(data).length === 0) {
     return true
   }
   if ((isSet(data) || isMap(data)) && data.size <= 0) {
