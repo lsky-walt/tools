@@ -85,4 +85,36 @@ function checkNum(str) {
   return ret
 }
 
-export { isEmpty, toUnique, checkNum }
+/**
+ * Get value according to target key.
+ * @param {any} data source data
+ * @param {string | number} key target key
+ * @param {any} defaultValue default value
+ */
+const obtain = (data, key, defaultValue = null) => {
+  if (isEmpty(data) || isEmpty(key)) {
+    return defaultValue
+  }
+  if (isMap(data)) {
+    if (isEmpty(data.get(key))) {
+      return defaultValue
+    }
+    return data.get(key)
+  }
+  if (isSet(data)) {
+    const transformSet = [...data]
+    if (isEmpty(transformSet[key])) {
+      return defaultValue
+    }
+    return transformSet[key]
+  }
+  if (isObject(data) || isArray(data)) {
+    if (isEmpty(data[key])) {
+      return defaultValue
+    }
+    return data[key]
+  }
+  return defaultValue
+}
+
+export { isEmpty, toUnique, checkNum, obtain }
