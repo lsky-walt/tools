@@ -114,7 +114,7 @@ const obtain = (data, key, defaultValue = null) => {
     }
     return data[key]
   }
-  return defaultValue
+  return isEmpty(data[key]) ? defaultValue : data[key]
 }
 
 export { isEmpty, toUnique, checkNum, obtain }
