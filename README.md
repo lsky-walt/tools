@@ -30,11 +30,12 @@
 
 > 有关值操作
 
-| Name     | Type         | Return  | Description                |
-| :------- | :----------- | :------ | :------------------------- |
-| isEmpty  | any          | Boolean | 是否为空值                 |
-| toUnique | Array \| Set | Array   | 去重                       |
-| checkNum | String       | String  | 校验数值字符串，并且格式化 |
+| Name     | Type                     | Return                | Description                |
+| :------- | :----------------------- | :-------------------- | :------------------------- | --- | ------------------------ |
+| isEmpty  | any                      | Boolean               | 是否为空值                 |
+| toUnique | Array \| Set             | Array                 | 去重                       |
+| checkNum | String                   | String                | 校验数值字符串，并且格式化 |
+| obtain   | (value: any, key: string | number, default: null | any) => any                | any | 取值操作，支持返回默认值 |
 
 ## Request
 
@@ -78,3 +79,10 @@
 | Name     | Type                     | Return   | Description |
 | :------- | :----------------------- | :------- | :---------- |
 | throttle | (func, wait) => Function | Function | 节流        |
+
+## Date
+
+| Name                    | Type                                     | Return            | Description       |
+| :---------------------- | :--------------------------------------- | :---------------- | :---------------- | ------------------------- | ---------------------- |
+| replaceTargetDateFormat | (fmt: string, tar: string, value: string | number) => string | string            | 给定 fmt 中替换指定 value |
+| format                  | (fmt: string, date: Date                 | string            | number) => string | string                    | 根据 format 格式化时间 |
