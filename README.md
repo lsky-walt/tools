@@ -31,7 +31,7 @@
 > 有关值操作
 
 | Name     | Type                     | Return                | Description                |
-| :------- | :----------------------- | :-------------------- | :------------------------- | --- | ------------------------ |
+| :------- | :----------------------- | :-------------------- | :------------------------- | 
 | isEmpty  | any                      | Boolean               | 是否为空值                 |
 | toUnique | Array \| Set             | Array                 | 去重                       |
 | checkNum | String                   | String                | 校验数值字符串，并且格式化 |
@@ -61,6 +61,9 @@
 | :--------------- | :--------------------------------------------------- | :--------------------- | :------------- |
 | addEventListener | (dom, eventType, cb, option) => {remove: () => void} | { remove: () => void } | 注册事件       |
 | getParent        | (dom, target: String \| Element) => null             | Element \| null        | 获取指定父元素 |
+| isBrowser        | Function         | Boolean        | 判断是否是浏览器 |
+| injectScript        | (url: String, id: String) => Element         | Element        | 插入 Script 标签 |
+| checkTargetModuleHaveLoaded        | (cb: Function, condition: Function, params: {count: Number, time: Number, fail: Function}) => void         | void        | 循环检查 |
 
 ## UUID
 
@@ -83,6 +86,6 @@
 ## Date
 
 | Name                    | Type                                     | Return            | Description       |
-| :---------------------- | :--------------------------------------- | :---------------- | :---------------- | ------------------------- | ---------------------- |
-| replaceTargetDateFormat | (fmt: string, tar: string, value: string | number) => string | string            | 给定 fmt 中替换指定 value |
-| format                  | (fmt: string, date: Date                 | string            | number) => string | string                    | 根据 format 格式化时间 |
+| :---------------------- | :--------------------------------------- | :---------------- | :---------------- |
+| replaceTargetDateFormat | (fmt: string, tar: string, value: string \| number) => string | string            | 给定 fmt 中替换指定 value |
+| format                  | (fmt: string, date: Date \| string \| number) => string | string                    | 根据 format 格式化时间 |
