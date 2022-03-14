@@ -1,7 +1,7 @@
 import { spawn } from "child_process"
 
-const exec = ({ command = "", args = [], option = [], log }) => {
-  return new Promise((resolve, reject) => {
+const exec = ({ command = "", args = [], option = [], log }) =>
+  new Promise((resolve, reject) => {
     if (!command || args.length <= 0) {
       console.log()
       console.log()
@@ -26,6 +26,5 @@ const exec = ({ command = "", args = [], option = [], log }) => {
       resolve(rs)
     })
   })
-}
 
 export { exec }
