@@ -1,4 +1,6 @@
 import { spawn } from "child_process"
+import fs from "fs"
+import util from "util"
 
 const exec = ({ command = "", args = [], option = [], log }) =>
   new Promise((resolve, reject) => {
@@ -27,4 +29,32 @@ const exec = ({ command = "", args = [], option = [], log }) =>
     })
   })
 
-export { exec }
+async function isFile(p) {
+  try {
+    const stat = await util.promisify(fs.stat)(p)
+    // 是否是文件
+    return !!stat.isFile()
+  } catch (err) {
+    return false
+  }
+}
+
+async function isDirectory(p) {
+  try {
+    const stat = await util.promisify(fs.stat)(p)
+    return !!stat.isDirectory()
+  } catch (err) {
+    return false
+  }
+}
+
+async function isExist(p) {
+  try {
+    const stat = await util.promisify(fs.stat)(p)
+    return stat.isFile() || stat.isDirectory()
+  } catch (err) {
+    return false
+  }
+}
+
+export { exec, isFile, isDirectory, isExist }
