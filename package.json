@@ -1,6 +1,6 @@
 {
   "name": "@lsky/tools",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "lib/index.js",
   "repository": "git@github.com:lsky-walt/tools.git",
   "author": "lsky_walt <lsky_walt@163.com>",
@@ -10,6 +10,9 @@
     "build-lib": "cross-env NODE_ENV=publish babel src --out-dir lib",
     "build": "./build.sh",
     "pub": "npm run build && npm publish --access public"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "files": [
     "lib",
