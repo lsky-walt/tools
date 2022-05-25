@@ -12,7 +12,7 @@ function isType(type) {
 }
 
 const isNull = isType("Null")
-const isUndefined = isType("undefined")
+const isUndefined = isType("Undefined")
 const isArray = isType("Array")
 const isObject = isType("Object")
 const isNumber = isType("Number")
@@ -24,7 +24,10 @@ const isRegExp = isType("RegExp")
 const isMap = isType("Map")
 const isSet = isType("Set")
 const isSymbol = isType("Symbol")
-const isPromise = (obj) => isType("Promise")(obj) && isType("Function")(obj)
+const isPromise = (obj) =>
+  !!obj &&
+  (isObject(obj) || isFunc(obj) || isType("Promise")(obj)) &&
+  isFunc(obj.then)
 const isNan = (a) => a !== a
 
 export {
